@@ -165,7 +165,7 @@ def move_front(snake_head, direction):
 		snake_head[0] -= 1
 	return snake_head, direction
 
-def run_game(network, iterations):
+def run_game(network, iterations, gui=True):
 	fitness = 0
 	for i in range(iterations):
 		win = curses.newwin(h, w, 0, 0)
@@ -176,23 +176,25 @@ def run_game(network, iterations):
 		apple_position = [20,20]
 		score = 0
 		win.addch(apple_position[0], apple_position[1], curses.ACS_DIAMOND)
-		prev_button_direction = 1
-		button_direction = 1
-		key = curses.KEY_RIGHT
+		prev_direction = 1
+		direction = 1
+		if gui:
+			key = curses.KEY_RIGHT
 		steps = 0
 		while True:
 			win.border(0)
 			win.timeout(100)
-			next_key = win.getch()
-			if next_key == -1:
-				key = key
-			else:
-				key = next_key
+			if gui:
+				next_key = win.getch()
+				if next_key == -1:
+					key = key
+				else:
+					key = next_key
 			actions = [move_front, move_left, move_right]
-			action = random.choice(actions)(snake_head, prev_button_direction)
-			button_direction = action[1]
+			action = random.choice(actions)(snake_head, prev_direction)
+			direction = action[1]
 			snake_head = action[0]
-			prev_button_direction = button_direction
+			prev_direction = direction
 			if snake_head == apple_position:
 				apple_position, score = collision_with_apple(score)
 				snake_position.insert(0, list(snake_head))
@@ -211,4 +213,4 @@ def run_game(network, iterations):
 
 
 if __name__ == '__main__':
-	print(run_game(None, int(argv[1])))
+	print(run_game(None, int(argv[1]), gui=True))
