@@ -10,7 +10,7 @@ sc = curses.initscr()
 h, w = sc.getmaxyx()
 
 def fitness_func(steps, apples):
-	return steps + ((2 ** apples) + ((apples ** 2.1) * 500)) - ((apples ** 1.2) * ((steps * 0.25) ** 1.3))
+	return (steps + ((2 ** apples) + ((apples ** 2.1) * 500)) - ((apples ** 1.2) * ((steps * 0.25) ** 1.3))) / 1000000
 
 def angle_with_apple(snake_position, apple_position):
 	snake_direction = np.array(snake_position[0]) - np.array(snake_position[1])
@@ -20,8 +20,10 @@ def angle_with_apple(snake_position, apple_position):
 	return math.atan2(snake_direction[0] * apple_direction[1] - snake_direction[1] * apple_direction[0], 
 		snake_direction[0] * apple_direction[0] + snake_direction[1] * apple_direction[1]) / math.pi
 
-def collision_with_apple(score):
+def collision_with_apple(score, snake_position):
 	apple_position = [random.randint(1,h-2),random.randint(1,w-2)]
+	while apple_position in snake_position:
+		apple_position = [random.randint(1,h-2),random.randint(1,w-2)]
 	score += 1
 	return apple_position, score
 
@@ -175,7 +177,7 @@ def move_front(snake_head, direction):
 		snake_head[0] -= 1
 	return snake_head, direction
 
-def run_game(network, iterations, gui=True):
+def run_game(network, iterations, speed, gui=True):
 	fitness = 0
 	for i in range(iterations):
 		win = curses.newwin(h, w, 0, 0)
@@ -194,7 +196,7 @@ def run_game(network, iterations, gui=True):
 		steps_without_apple = 0
 		while True:
 			win.border(0)
-			win.timeout(20)
+			win.timeout(speed)
 			if gui:
 				next_key = win.getch()
 				if next_key == -1:
@@ -212,7 +214,7 @@ def run_game(network, iterations, gui=True):
 			snake_head = res[0]
 			prev_direction = direction
 			if snake_head == apple_position:
-				apple_position, score = collision_with_apple(score)
+				apple_position, score = collision_with_apple(score, snake_position)
 				snake_position.insert(0, list(snake_head))
 				win.addch(apple_position[0], apple_position[1], curses.ACS_DIAMOND)
 				steps_without_apple = 0

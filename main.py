@@ -13,4 +13,4 @@ if __name__ == '__main__':
 	with open(genome_path, 'rb') as f:
 		winner = pickle.load(f)
 	winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
-	print(run_game(winner_net, 1, gui=True))
+	print(run_game(winner_net, 1, 40, gui=True))

@@ -9,7 +9,7 @@ def eval_genomes(genomes, config):
     for genome_id, genome in genomes:
         genome.fitness = 0
         net = neat.nn.FeedForwardNetwork.create(genome, config)
-        genome.fitness = run_game(net, 3, gui=True)
+        genome.fitness = run_game(net, 10, 0, gui=True)
 
 
 def run(config_file):
@@ -20,7 +20,7 @@ def run(config_file):
     p.add_reporter(neat.StdOutReporter(True))
     p.add_reporter(neat.StatisticsReporter())
     p.add_reporter(neat.Checkpointer(5))
-    winner = p.run(eval_genomes, 20)
+    winner = p.run(eval_genomes, 200)
     print('\nBest genome:\n{!s}'.format(winner))
     with open('winner_genome', 'wb') as f:
         pickle.dump(winner, f)
