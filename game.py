@@ -194,7 +194,7 @@ def run_game(network, iterations, gui=True):
 		steps_without_apple = 0
 		while True:
 			win.border(0)
-			win.timeout(20)
+			win.timeout(60)
 			if gui:
 				next_key = win.getch()
 				if next_key == -1:
