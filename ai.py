@@ -20,7 +20,7 @@ def run(config_file):
     p.add_reporter(neat.StdOutReporter(True))
     p.add_reporter(neat.StatisticsReporter())
     p.add_reporter(neat.Checkpointer(5))
-    winner = p.run(eval_genomes, 25)
+    winner = p.run(eval_genomes, 20)
     print('\nBest genome:\n{!s}'.format(winner))
     with open('winner_genome', 'wb') as f:
         pickle.dump(winner, f)
