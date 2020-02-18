@@ -230,7 +230,3 @@ def run_game(network, iterations, gui=True):
 		fitness += fitness_func(steps, score)
 		curses.endwin()
 	return fitness / iterations
-
-
-if __name__ == '__main__':
-	print(run_game(None, int(argv[1]), gui=True))
