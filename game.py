@@ -181,6 +181,12 @@ def run_game(network, iterations, speed, gui=True):
 	fitness = 0
 	for i in range(iterations):
 		win = curses.newwin(h, w, 0, 0)
+		win.addch(1, 1, 'S')
+		win.addch(1, 2, 'C')
+		win.addch(1, 3, 'O')
+		win.addch(1, 4, 'R')
+		win.addch(1, 5, 'E')
+		win.addch(1, 6, ':')
 		win.keypad(1)
 		curses.curs_set(0)
 		snake_head = [10,15]
@@ -203,6 +209,8 @@ def run_game(network, iterations, speed, gui=True):
 					key = key
 				else:
 					key = next_key
+				for i in range(len(str(score))):
+					win.addch(1, 7+i, str(score)[i])
 			actions = [move_right, move_front, move_left]
 			action = network.activate((0 if check_right(snake_head, snake_position, prev_direction) else 1,
 				0 if check_front(snake_head, snake_position, prev_direction) else 1,
