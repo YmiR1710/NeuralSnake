@@ -1,3 +1,4 @@
+![Python versions: 3.4, 3.5, 3.6](https://img.shields.io/pypi/pyversions/Django.svg)
 # Neural Snake
 
 Train a Neural Network to play Snake using a Genetic Algorithm.
@@ -8,24 +9,24 @@ Getting Started
 ------------
 To install required libraries: 
 
-`pip install -r requierments.txt`
+`$ pip install -r requierments.txt`
 
 Running project
 ------------
 
-`cd SnakeAi`
+`$ cd SnakeAi`
 
 or
 
-`cd ImprovedSnakeAI`
+`$ cd ImprovedSnakeAI`
 
 Run game with existing bot:
 
-`python main.py <path-to-genome>`
+`$ python main.py <path-to-genome>`
 
 Run genetic algorithm to create new bots:
 
-`python ai.py`
+`$ python ai.py`
 
 
 Project Organization
