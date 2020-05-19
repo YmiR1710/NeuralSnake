@@ -12,6 +12,7 @@ To install required libraries:
 `$ pip install -r requierments.txt`
 
 To run on Windows you will have to additionally install curses:
+
 `pip install windows-curses`
 
 Running project
