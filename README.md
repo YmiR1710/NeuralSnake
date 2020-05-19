@@ -36,19 +36,18 @@ Run genetic algorithm to create new bots:
 Project Organization
 ------------
 
-    ├── README.md                 <- Information about the project.
-    ├── requiermnts.txt           <- File for installation of additional libraries.
+    ├── README.md                 <- Information about the project
+    ├── requiermnts.txt           <- File for installation of additional libraries
     ├── SnakeAI                   <- First version of project
-    │   ├── main.py               <- Run genetic algorithm to create new bots
-    │   ├── ai.py                 <- The final, ca
+    │   ├── main.py               <- File to run game with existing bot
+    │   ├── ai.py                 <- Run genetic algorithm to create new bots
     │   ├── game.py               <- Implementation of game and related API
     │   ├── config-feedforward    <- GA config file
     │   └── bots                  <- Folder with some pre-created bots
     ├── ImprovedSnakeAI           <- Second version of project
-    │   ├── main.py               <- Run genetic algorithm to create new bots
-    │   ├── ai.py                 <- The final, ca
+    │   ├── main.py               <- File to run game with existing bot
+    │   ├── ai.py                 <- Run genetic algorithm to create new bots
     │   ├── game.py               <- Implementation of game and related API
     │   ├── config-feedforward    <- GA config file
-    │   ├── visualize.py          <- Visualiztion of neural network architecture
     │   └── bots                  <- Folder with some pre-created bots
 --------
