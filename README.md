@@ -39,7 +39,6 @@ Project Organization
     │   ├── ai.py                 <- The final, ca
     │   ├── game.py               <- Implementation of game and related API
     │   ├── config-feedforward    <- GA config file
-    │   ├── visualize.py          <- Visualiztion of neural network architecture
     │   └── bots                  <- Folder with some pre-created bots
     ├── ImprovedSnakeAI           <- Second version of project
     │   ├── main.py               <- Run genetic algorithm to create new bots
