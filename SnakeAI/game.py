@@ -10,7 +10,11 @@ sc = curses.initscr()
 h, w = sc.getmaxyx()
 
 def fitness_func(steps, apples):
-	return (steps + ((2 ** apples) + ((apples ** 2.1) * 500)) - ((apples ** 1.2) * ((steps * 0.25) ** 1.3))) / 1000000
+	# return (steps + ((2 ** apples) + ((apples ** 2.1) * 500)) - ((apples ** 1.2) * ((steps * 0.25) ** 1.3))) / 1000000
+	if apples == 0:
+		return -(steps*10)
+	else:
+		return (steps*10) + (apples*200)
 
 def angle_with_apple(snake_position, apple_position):
 	snake_direction = np.array(snake_position[0]) - np.array(snake_position[1])
@@ -181,12 +185,6 @@ def run_game(network, iterations, speed, gui=True):
 	fitness = 0
 	for i in range(iterations):
 		win = curses.newwin(h, w, 0, 0)
-		win.addch(1, 1, 'S')
-		win.addch(1, 2, 'C')
-		win.addch(1, 3, 'O')
-		win.addch(1, 4, 'R')
-		win.addch(1, 5, 'E')
-		win.addch(1, 6, ':')
 		win.keypad(1)
 		curses.curs_set(0)
 		snake_head = [10,15]
@@ -209,6 +207,12 @@ def run_game(network, iterations, speed, gui=True):
 					key = key
 				else:
 					key = next_key
+				win.addch(1, 1, 'S')
+				win.addch(1, 2, 'C')
+				win.addch(1, 3, 'O')
+				win.addch(1, 4, 'R')
+				win.addch(1, 5, 'E')
+				win.addch(1, 6, ':')
 				for i in range(len(str(score))):
 					win.addch(1, 7+i, str(score)[i])
 			actions = [move_right, move_front, move_left]

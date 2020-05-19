@@ -14,17 +14,17 @@ def eval_genomes(genomes, config):
 
 def run(config_file):
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
-                         neat.DefaultSpeciesSet, neat.DefaultStagnation,
-                         config_file)
+                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
+                          config_file)
     p = neat.Population(config)
+    #p = neat.Checkpointer.restore_checkpoint('neat-checkpoint-261')
     p.add_reporter(neat.StdOutReporter(True))
     p.add_reporter(neat.StatisticsReporter())
     p.add_reporter(neat.Checkpointer(5))
-    winner = p.run(eval_genomes, 200)
+    winner = p.run(eval_genomes, 500)
     print('\nBest genome:\n{!s}'.format(winner))
-    with open('winner_genome', 'wb') as f:
+    with open('winner_genome_9', 'wb') as f:
         pickle.dump(winner, f)
-    winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
 
 
 
